@@ -30,11 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B0BAC9822CAA238800C3F5E3 /* SwiftDataPractica */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftDataPractica;
-			sourceTree = "<group>";
-		};
 		B0BAC9952CAA238A00C3F5E3 /* SwiftDataPracticaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftDataPracticaTests;
@@ -43,6 +38,11 @@
 		B0BAC99F2CAA238A00C3F5E3 /* SwiftDataPracticaUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftDataPracticaUITests;
+			sourceTree = "<group>";
+		};
+		B0BAC9C12CAA2A1F00C3F5E3 /* SwiftDataPractica */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SwiftDataPractica;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +75,7 @@
 		B0BAC9772CAA238800C3F5E3 = {
 			isa = PBXGroup;
 			children = (
-				B0BAC9822CAA238800C3F5E3 /* SwiftDataPractica */,
+				B0BAC9C12CAA2A1F00C3F5E3 /* SwiftDataPractica */,
 				B0BAC9952CAA238A00C3F5E3 /* SwiftDataPracticaTests */,
 				B0BAC99F2CAA238A00C3F5E3 /* SwiftDataPracticaUITests */,
 				B0BAC9812CAA238800C3F5E3 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B0BAC9822CAA238800C3F5E3 /* SwiftDataPractica */,
+				B0BAC9C12CAA2A1F00C3F5E3 /* SwiftDataPractica */,
 			);
 			name = SwiftDataPractica;
 			packageProductDependencies = (
