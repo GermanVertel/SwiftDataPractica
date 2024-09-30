@@ -11,6 +11,7 @@ struct addView: View {
     
     @State private var item = ListModel()
     @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         List {
@@ -21,6 +22,7 @@ struct addView: View {
             Button(action: {
                 withAnimation{
                     context.insert(item)
+                    dismiss()
                 }
             }, label: {
                 Text("Guardar")
