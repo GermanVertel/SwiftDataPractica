@@ -9,7 +9,7 @@ import SwiftUI
 
 struct addView: View {
     
-    @State private var item = ListModel()
+   @State private var item = ListModel()
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     
