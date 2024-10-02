@@ -15,12 +15,22 @@ struct ContentView: View {
    //@Query(filter: #Predicate(<ListModel> {$0.titulo.contains("Primer compra")}, sort: \ListModel.titulo, order: .forward), private var items: [ListModel])
     
     @State private var show = false
+    @Environment(\.modelContext) var context
     var body: some View {
         NavigationStack{
             List{
                 Section("Activos"){
                     ForEach(items) { item in
                         CardView(item: item)
+                            .swipeActions{
+                                Button (role: .destructive) {
+                                    withAnimation{
+                                        context.delete(item)
+                                    }
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
+                            }
                     }
                 }
                 Section("Completadas"){
@@ -65,7 +75,12 @@ struct CardView: View  {
 
 
 
+
+
+
+
 #Preview {
     ContentView()
        
 }
+
