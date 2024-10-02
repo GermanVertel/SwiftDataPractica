@@ -9,50 +9,57 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-  
-    //@Query private var items: [ListModel]
-    @Query(sort: \ListModel.titulo, order: .forward) private var items: [ListModel]
-   //@Query(filter: #Predicate(<ListModel> {$0.titulo.contains("Primer compra")}, sort: \ListModel.titulo, order: .forward), private var items: [ListModel])
-    
+   @Query private var items: [ListModel]
+    //@Query(sort: \ListModel.titulo, order: .forward) private var items: [ListModel]
+    //@Query(filter: #Predicate<ListModel> { $0.titulo.contains("Primer compra") }, sort: \ListModel.titulo, order: .forward)
+   // private var items: [ListModel]
+
     @State private var show = false
-    @Environment(\.modelContext) var context
+
     var body: some View {
-        NavigationStack{
-            List{
-                Section("Activos"){
+        NavigationStack {
+            List {
+                Section("Activos") {
                     ForEach(items) { item in
-                        CardView(item: item)
-                            .swipeActions{
-                                Button (role: .destructive) {
-                                    withAnimation{
-                                        context.delete(item)
-                                    }
-                                } label: {
-                                    Image(systemName: "trash")
-                                }
+                        NavigationLink(value: item) {
+                            CardView(item: item)
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                // Accion de eliminar
+                            } label: {
+                                Image(systemName: "trash")
                             }
+                        }
                     }
                 }
-                Section("Completadas"){
-                    
+
+                Section("Completadas") {
+                    // Aquí puedes añadir las tareas completadas si lo necesitas
                 }
             }
             .navigationTitle("Mis compras")
-            .toolbar{
+            .toolbar {
                 Button(action: {
                     show.toggle()
-                }, label: {
+                }) {
                     Image(systemName: "plus")
-                })
+                }
+            }
+            .sheet(isPresented: $show) {
+                NavigationStack {
+                    addView()
+                        .presentationDetents([.medium])
+                }
+            }
+            // Define la navegación destino para ListModel
+            .navigationDestination(for: ListModel.self) { item in
+                CardView(item: item)  // Vista de destino
             }
         }
-        .sheet(isPresented: $show, content: {
-            NavigationStack{
-                addView()
-            }.presentationDetents([.medium])
-        })
     }
 }
+
 
 
 struct CardView: View  {
