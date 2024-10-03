@@ -33,10 +33,11 @@ struct ComprasView: View {
                         .frame(width: 100)
                     Spacer()
                     //contador
+                    ContadorView(contador: $cantidad)
                 }
                 HStack{
                     Button{
-                        //
+                       // let art = (Float(precio) ?? 0) * Float(cantidad)
                     } label: {
                         Text("Agregar")
                     }
@@ -55,6 +56,35 @@ struct ComprasView: View {
             .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+
+struct ContadorView: View {
+    @Binding var contador: Int
+    var body: some View{
+        HStack{
+            Button{
+                contador -= 1
+                if contador <= 1{
+                    contador = 1
+                }
+            } label: {
+                Image(systemName: "minus")
+            }
+            Text("\(contador)")
+            
+            Button(action: {
+                contador += 1
+            }) {
+                Image(systemName: "plus")
+            }
+        }
+    }
+}
+
+
+
+
+
 
 struct ComprasView_Previews: PreviewProvider {
     static var previews: some View {
