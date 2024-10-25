@@ -19,6 +19,7 @@ struct ComprasView: View {
     @State private var cantidad = 1
     
     @FocusState private var isFocus : Bool
+    @Query private var articulos : [ArticulosModel]
     
     var body: some View {
         VStack{
@@ -37,7 +38,13 @@ struct ComprasView: View {
                 }
                 HStack{
                     Button{
-                       // let art = (Float(precio) ?? 0) * Float(cantidad)
+                       let precioTotal = (Float(precio) ?? 0) * Float(cantidad)
+                        let newArticulo = ArticulosModel(articulo: articulo, precio: precioTotal, idList: itemList.id)
+                        itemList.relationArticulos.append(newArticulo)
+                        isFocus = true
+                        articulo = ""
+                        precio = ""
+                        cantidad = 1
                     } label: {
                         Text("Agregar")
                     }
@@ -49,6 +56,13 @@ struct ComprasView: View {
             
             List{
                 Section("Carrito"){
+                    ForEach(articulos){ item in
+                        HStack{
+                            Text(item.articulo)
+                            Spacer()
+                            Text("\(item.precio.formatted())")
+                        }
+                    }
                     
                 }
             }
@@ -81,17 +95,3 @@ struct ContadorView: View {
     }
 }
 
-
-
-
-
-
-struct ComprasView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Crear un ejemplo de ListModel con datos ficticios
-        let exampleItem = ListModel(titulo: "Ejemplo", presupuesto: "100")
-
-        // Pasar el ejemplo a ComprasView
-        ComprasView(itemList: exampleItem)
-    }
-}
